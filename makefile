@@ -1,5 +1,10 @@
-The makefile should produce the README.md which should contain the following information:
+all: README.md
 
-The title of the project.
-The date and time at which make was run.
-The number of lines of code contained in guessinggame.sh.
+README.md:
+	echo '# UNIX WORKBENCH' > README.md
+	echo '## Peer Graded assignment ##' >> README.md
+	echo '* This makefile was run at: $(shell date +%d-%m-%Y:%H:%M:%S) *' >> README.md
+	echo '* There were $(shell wc -l < guessinggame.sh) lines in guessinggame.sh *' >> README.md
+	echo '# Enjoy the guessing Game! #'>>README.md
+clean:
+	rm README.md
