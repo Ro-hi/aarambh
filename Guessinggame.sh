@@ -1,18 +1,25 @@
-#!/bin/bash
-echo “Please pick an integer between 1 and 10.”
+echo "---GUESSING GAME---"
+echo "Enter your guess: "
 read guess
-number=0
-while [ “$number” -le 1 ]
+
+function get_file {
+	local number=$(ls -l | wc -l)-1
+	echo $number
+}
+
+correct=$(get_file)
+
+while [[ $guess -ne $correct ]]
 do
-number=$RANDOM
-let “number %= 11 ”
+	if [[ $guess -gt $correct ]]
+	then
+		echo "Sorry, your guess was too high..."
+	else 
+		echo "Sorry, your guess was too low..."
+	fi
+	echo
+	echo "Try again: "
+	read guess
 done
 
-if [ $guess -eq $number ]
-then
-echo “You win!”
-else
-echo “You suck. The number was $number.”
-fi
-
-exit
+echo "Congratulations! You guessed the right number!"
